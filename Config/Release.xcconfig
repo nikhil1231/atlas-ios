@@ -1,0 +1,7 @@
+ATLAS_BACKEND_HOST = atlas.nikhil.ing
+ATLAS_PUSH_ENVIRONMENT = production
+APNS_ENVIRONMENT = production
+// Shared with the widgets and share extension: an App Group for the widget snapshot and a
+// keychain access group for the credentials. Keep both in step with the .entitlements files.
+ATLAS_APP_GROUP = group.ing.nikhil.noodle
+ATLAS_KEYCHAIN_GROUP = $(AppIdentifierPrefix)ing.nikhil.noodle.shared

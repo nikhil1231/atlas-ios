@@ -1,0 +1,15 @@
+name: iOS
+on: [push, pull_request]
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check project generation
+        run: |
+          python3 scripts/generate_project.py
+          git diff --exit-code -- Atlas.xcodeproj
+      - name: Build and test on an available iPhone simulator
+        run: |
+          DEVICE_ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; ds=json.load(sys.stdin)["devices"]; print(next(d["udid"] for group in ds.values() for d in group if "iPhone" in d["name"]))')
+          xcodebuild test -project Atlas.xcodeproj -scheme Atlas -destination "platform=iOS Simulator,id=$DEVICE_ID" -parallel-testing-enabled NO -derivedDataPath "$RUNNER_TEMP/AtlasDerivedData" CODE_SIGNING_ALLOWED=NO
