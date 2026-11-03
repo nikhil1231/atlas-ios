@@ -5,3 +5,5 @@ APNS_ENVIRONMENT = production
 // keychain access group for the credentials. Keep both in step with the .entitlements files.
 ATLAS_APP_GROUP = group.ing.nikhil.noodle
 ATLAS_KEYCHAIN_GROUP = $(AppIdentifierPrefix)ing.nikhil.noodle.shared
+// Your Apple developer team, for automatic signing of the app and both extensions.
+DEVELOPMENT_TEAM = 4H537347GG

@@ -30,7 +30,8 @@ def quote(value):
 
 files = {}
 for path in sorted(ROOT.rglob("*")):
-    if any(p.startswith(".") for p in path.relative_to(ROOT).parts):
+    parts = path.relative_to(ROOT).parts
+    if any(p.startswith(".") or p.endswith(".xcodeproj") for p in parts):  # Xcode's own and per-user files
         continue
     if path.suffix not in {".swift", ".plist", ".entitlements", ".xcconfig", ".xcprivacy"}:
         continue
